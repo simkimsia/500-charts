@@ -1,4 +1,4 @@
-# 500 examples of how to produce charts
+# 500 implementations of charts
 
 Largely using wijmo technology to produce
 
