@@ -1,0 +1,353 @@
+<!DOCTYPE HTML>
+<HTML>
+<head>
+<!--Theme-->
+<link href="http://cdn.wijmo.com/themes/aristo/jquery-wijmo.css" rel="stylesheet" type="text/css" />
+
+<!--Wijmo Widgets CSS-->
+<link href="http://cdn.wijmo.com/jquery.wijmo-pro.all.3.20142.45.min.css" rel="stylesheet" type="text/css" />
+
+<!--RequireJs-->
+<script type="text/javascript" src="http://cdn.wijmo.com/external/require.js"></script>
+
+<script type="text/javascript">
+    requirejs.config({
+        baseUrl: "http://cdn.wijmo.com/amd-js/3.20142.45",
+            paths: {
+                "jquery": "jquery-1.11.1.min",
+                "jquery-ui": "jquery-ui-1.11.0.custom.min",
+                "jquery.ui": "jquery-ui",
+                "jquery.mousewheel": "jquery.mousewheel.min",
+                "globalize": "globalize.min"
+            }
+    });
+</script>
+
+<script id="scriptInit" type="text/javascript">
+    var OrganicTraffic = [
+        {
+            type: "Jan Organic Traffic",
+            RV: 67, 
+            NV: 150, 
+            BR: 0.2
+        },
+        {
+            type: " ",
+            RV: 60, 
+            NV: 190, 
+            BR: 0.3
+        },
+        {
+            type: "Mar Organic Traffic",
+            RV: 70, 
+            NV: 210, 
+            BR: 0.15
+        }
+    ];
+
+    var SocialMedia = [
+        {
+            type: "Jan Social Media",
+            RV: 60, 
+            NV: 160, 
+            BR: 0.2
+        },
+        {
+            type: " ",
+            RV: 63, 
+            NV: 170, 
+            BR: 0.3
+        },
+        {
+            type: "Mar Social Media",
+            RV: 69, 
+            NV: 203, 
+            BR: 0.44
+        }
+    ];
+
+    var DirectTraffic = [
+        {
+            type: "Jan Direct Traffic",
+            RV: 70, 
+            NV: 160, 
+            BR: 0.2
+        },
+        {
+            type: " ",
+            RV: 68, 
+            NV: 180, 
+            BR: 0.13
+        },
+        {
+            type: "Mar Direct Traffic",
+            RV: 138, 
+            NV: 190, 
+            BR: 0.3
+        }
+    ];
+
+    var ReferralTraffic = [
+        {
+            type: "Jan Referral Traffic",
+            RV: 50, 
+            NV: 150, 
+            BR: 0.2
+        },
+        {
+            type: " ",
+            RV: 48, 
+            NV: 140, 
+            BR: 0.13
+        },
+        {
+            type: "Mar Referral Traffic",
+            RV: 59, 
+            NV: 150, 
+            BR: 0.3
+        }
+    ];
+
+    require(["wijmo.wijcompositechart"], function () { 
+        $(document).ready(function () { 
+            $("#OrganicTrafficCompositeChart").wijcompositechart({ 
+                axis: { 
+                    y: [{// main y axis 
+                        text: "No. of Visitors", 
+                        compass: "west", 
+                        min: 0,
+                        max: 350,
+                    }, {// y1 axis 
+                        text: "Bounce Rate", 
+                        compass: "east",
+                        min: 0,
+                        max: 0.5,
+                    }] 
+                }, 
+                stacked: true, 
+                hint: { 
+                    content: function () { 
+                        return this.label + '\n ' + this.y + ''; 
+                    } 
+                }, 
+                header: { 
+                    text: "Organic Traffic"
+                }, 
+                data: { 
+                    x: { bind: "type" } 
+                }, 
+                dataSource: OrganicTraffic,
+                seriesList: [{ 
+                    type: "column", 
+                    label: "Returning Visitors", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "RV" } 
+                    } 
+                }, { 
+                    type: "column", 
+                    label: "New Visitors", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "NV" } 
+                    } 
+                }, { 
+                    type: "line", 
+                    label: "Bounce Rate", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "BR" } 
+                    }, 
+                    markers: { 
+                        visible: true, 
+                        type: "circle"
+                    },
+                    yAxis: 1
+                }] 
+            }); 
+        });
+        $(document).ready(function () { 
+            $("#SocialMediaCompositeChart").wijcompositechart({ 
+                axis: { 
+                    y: [{// main y axis 
+                        text: "No. of Visitors", 
+                        compass: "west", 
+                        min: 0,
+                        max: 350,
+                    }, {// y1 axis 
+                        text: "Bounce Rate", 
+                        compass: "east",
+                        min: 0,
+                        max: 0.5,
+                    }] 
+                }, 
+                stacked: true, 
+                hint: { 
+                    content: function () { 
+                        return this.label + '\n ' + this.y + ''; 
+                    } 
+                }, 
+                header: { 
+                    text: "Social Media"
+                }, 
+                data: { 
+                    x: { bind: "type" } 
+                }, 
+                dataSource: OrganicTraffic,
+                seriesList: [{ 
+                    type: "column", 
+                    label: "Returning Visitors", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "RV" } 
+                    } 
+                }, { 
+                    type: "column", 
+                    label: "New Visitors", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "NV" } 
+                    } 
+                }, { 
+                    type: "line", 
+                    label: "Bounce Rate", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "BR" } 
+                    }, 
+                    markers: { 
+                        visible: true, 
+                        type: "circle"
+                    },
+                    yAxis: 1
+                }] 
+            }); 
+        });
+        $(document).ready(function () { 
+            $("#DirectTrafficCompositeChart").wijcompositechart({ 
+                axis: { 
+                    y: [{// main y axis 
+                        text: "No. of Visitors", 
+                        compass: "west", 
+                        min: 0,
+                        max: 350,
+                    }, {// y1 axis 
+                        text: "Bounce Rate", 
+                        compass: "east",
+                        min: 0,
+                        max: 0.5,
+                    }] 
+                }, 
+                stacked: true, 
+                hint: { 
+                    content: function () { 
+                        return this.label + '\n ' + this.y + ''; 
+                    } 
+                }, 
+                header: { 
+                    text: "Direct Traffic"
+                }, 
+                data: { 
+                    x: { bind: "type" } 
+                }, 
+                dataSource: OrganicTraffic,
+                seriesList: [{ 
+                    type: "column", 
+                    label: "Returning Visitors", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "RV" } 
+                    } 
+                }, { 
+                    type: "column", 
+                    label: "New Visitors", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "NV" } 
+                    } 
+                }, { 
+                    type: "line", 
+                    label: "Bounce Rate", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "BR" } 
+                    }, 
+                    markers: { 
+                        visible: true, 
+                        type: "circle"
+                    },
+                    yAxis: 1
+                }] 
+            }); 
+        });
+        $(document).ready(function () { 
+            $("#ReferralTrafficCompositeChart").wijcompositechart({ 
+                axis: { 
+                    y: [{// main y axis 
+                        text: "No. of Visitors", 
+                        compass: "west", 
+                        min: 0,
+                        max: 350,
+                    }, {// y1 axis 
+                        text: "Bounce Rate", 
+                        compass: "east",
+                        min: 0,
+                        max: 0.5,
+                    }] 
+                }, 
+                stacked: true, 
+                hint: { 
+                    content: function () { 
+                        return this.label + '\n ' + this.y + ''; 
+                    } 
+                }, 
+                header: { 
+                    text: "Referral Traffic"
+                }, 
+                data: { 
+                    x: { bind: "type" } 
+                }, 
+                dataSource: OrganicTraffic,
+                seriesList: [{ 
+                    type: "column", 
+                    label: "Returning Visitors", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "RV" } 
+                    } 
+                }, { 
+                    type: "column", 
+                    label: "New Visitors", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "NV" } 
+                    } 
+                }, { 
+                    type: "line", 
+                    label: "Bounce Rate", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "BR" } 
+                    }, 
+                    markers: { 
+                        visible: true, 
+                        type: "circle"
+                    },
+                    yAxis: 1
+                }] 
+            }); 
+        }); 
+    }); 
+</script>
+</head>
+<body>
+    <div id="OrganicTrafficCompositeChart" style="width: 700px; height: 400px"></div>
+    <br/>
+    <div id="SocialMediaCompositeChart" style="width: 700px; height: 400px"></div>
+    <br/>
+    <div id="DirectTrafficCompositeChart" style="width: 700px; height: 400px"></div>
+    <br/>
+    <div id="ReferralTrafficCompositeChart" style="width: 700px; height: 400px"></div>
+    <br/>
+</body>
+</HTML>
