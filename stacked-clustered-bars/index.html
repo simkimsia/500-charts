@@ -120,11 +120,15 @@
                         compass: "west", 
                         min: 0,
                         max: 350,
+                        autoMajor: false,
+                        unitMajor: 100
                     }, {// y1 axis 
                         text: "Bounce Rate", 
                         compass: "east",
                         min: 0,
-                        max: 0.5,
+                        max: 0.6,
+                        autoMajor: false,
+                        unitMajor: 0.2
                     }] 
                 }, 
                 stacked: true, 
@@ -137,7 +141,8 @@
                     text: "All Traffic"
                 }, 
                 data: { 
-                    x: { bind: "type" } 
+                    x: { bind: "type" },
+                    barType: { bind: "type"}
                 }, 
                 dataSource: AllTraffic,
                 seriesList: [
@@ -179,8 +184,12 @@
                     opacity: 0.8, fill: "#ee6738", stroke: "#000000", "stroke-width": "1.5"
                 }, {
                     opacity: 0.8, fill: "#ecec29", stroke: "#12b6b6", "stroke-width": "1.5"
-                }]
-            }); 
+                }],
+                click: function (e, data) {
+                    console.log(e);
+                    console.log(data);
+                }
+            });
 
             $("#OrganicTrafficCompositeChart").wijcompositechart({ 
                 axis: { 
