@@ -126,7 +126,7 @@
                         text: "Bounce Rate", 
                         compass: "east",
                         min: 0,
-                        max: 0.6,
+                        max: 0.5,
                         autoMajor: false,
                         unitMajor: 0.2
                     }] 
@@ -141,8 +141,7 @@
                     text: "All Traffic"
                 }, 
                 data: { 
-                    x: { bind: "type" },
-                    barType: { bind: "type"}
+                    x: { bind: "type" }
                 }, 
                 dataSource: AllTraffic,
                 seriesList: [
@@ -190,6 +189,7 @@
                     console.log(data);
                 }
             });
+
 
             $("#OrganicTrafficCompositeChart").wijcompositechart({ 
                 axis: { 
