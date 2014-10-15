@@ -1,0 +1,359 @@
+<!DOCTYPE HTML>
+<HTML>
+<head>
+<!--Theme-->
+<link href="http://cdn.wijmo.com/themes/aristo/jquery-wijmo.css" rel="stylesheet" type="text/css" />
+
+<!--Wijmo Widgets CSS-->
+<link href="http://cdn.wijmo.com/jquery.wijmo-pro.all.3.20142.45.min.css" rel="stylesheet" type="text/css" />
+
+<!--RequireJs-->
+<script type="text/javascript" src="http://cdn.wijmo.com/external/require.js"></script>
+
+<script type="text/javascript">
+    requirejs.config({
+        baseUrl: "http://cdn.wijmo.com/amd-js/3.20142.45",
+            paths: {
+                "jquery": "jquery-1.11.1.min",
+                "jquery-ui": "jquery-ui-1.11.0.custom.min",
+                "jquery.ui": "jquery-ui",
+                "jquery.mousewheel": "jquery.mousewheel.min",
+                "globalize": "globalize.min"
+            }
+    });
+</script>
+
+<script id="scriptInit" type="text/javascript">
+    var OrganicTraffic = [
+        {
+            type: "Jan Organic Traffic",
+            RV: 67, 
+            NV: 150, 
+            BR: 0.2
+        },
+        {
+            type: "Feb Organic Traffic",
+            RV: 60, 
+            NV: 190, 
+            BR: 0.3
+        },
+        {
+            type: "Mar Organic Traffic",
+            RV: 70, 
+            NV: 210, 
+            BR: 0.15
+        }
+    ];
+
+    var SocialMedia = [
+        {
+            type: "Jan Social Media",
+            RV: 60, 
+            NV: 160, 
+            BR: 0.2
+        },
+        {
+            type: "Feb Social Media",
+            RV: 63, 
+            NV: 170, 
+            BR: 0.3
+        },
+        {
+            type: "Mar Social Media",
+            RV: 69, 
+            NV: 203, 
+            BR: 0.44
+        }
+    ];
+
+    var DirectTraffic = [
+        {
+            type: "Jan Direct Traffic",
+            RV: 70, 
+            NV: 160, 
+            BR: 0.2
+        },
+        {
+            type: "Feb Direct Traffic",
+            RV: 68, 
+            NV: 180, 
+            BR: 0.13
+        },
+        {
+            type: "Mar Direct Traffic",
+            RV: 138, 
+            NV: 190, 
+            BR: 0.3
+        }
+    ];
+
+    var ReferralTraffic = [
+        {
+            type: "Jan Referral Traffic",
+            RV: 50, 
+            NV: 150, 
+            BR: 0.2
+        },
+        {
+            type: "Feb Referral Traffic",
+            RV: 48, 
+            NV: 140, 
+            BR: 0.13
+        },
+        {
+            type: "Mar Referral Traffic",
+            RV: 59, 
+            NV: 150, 
+            BR: 0.3
+        }
+    ];
+
+    var YearlyOrganicTraffic = [
+        {
+            type: "Jan Organic Traffic",
+            RV: 67, 
+            NV: 150, 
+            BR: 0.2
+        },
+        {
+            type: "Feb Organic Traffic",
+            RV: 60, 
+            NV: 190, 
+            BR: 0.3
+        },
+        {
+            type: "Mar Organic Traffic",
+            RV: 70, 
+            NV: 210, 
+            BR: 0.15
+        },
+        {
+            type: "Apr Organic Traffic",
+            RV: 67, 
+            NV: 160, 
+            BR: 0.3
+        },
+        {
+            type: "May Organic Traffic",
+            RV: 80, 
+            NV: 185, 
+            BR: 0.3
+        },
+        {
+            type: "Jun Organic Traffic",
+            RV: 100, 
+            NV: 210, 
+            BR: 0.35
+        },
+        {
+            type: "Jul Organic Traffic",
+            RV: 107, 
+            NV: 150, 
+            BR: 0.35
+        },
+        {
+            type: "Aug Organic Traffic",
+            RV: 60, 
+            NV: 190, 
+            BR: 0.31
+        },
+        {
+            type: "Sep Organic Traffic",
+            RV: 70, 
+            NV: 210, 
+            BR: 0.29
+        },
+        {
+            type: "Oct Organic Traffic",
+            RV: 67, 
+            NV: 220, 
+            BR: 0.25
+        },
+        {
+            type: "Nov Organic Traffic",
+            RV: 90, 
+            NV: 230, 
+            BR: 0.22
+        },
+        {
+            type: "Dec Organic Traffic",
+            RV: 110, 
+            NV: 240, 
+            BR: 0.2
+        }
+    ];  
+
+    var AllTraffic = OrganicTraffic.concat(SocialMedia).concat(DirectTraffic).concat(ReferralTraffic);
+
+    require(["wijmo.wijcompositechart"], function () { 
+        $(document).ready(function () { 
+
+            function translateToLink(x_value) {
+                var link = x_value.toLowerCase();
+                link = link.replace(/\s/g, '_');
+                return link + '.html';
+            }
+
+            $("#AllTrafficCompositeChart").wijcompositechart({ 
+                axis: { 
+                    y: [{// main y axis 
+                        text: "No. of Visitors", 
+                        compass: "west", 
+                        min: 0,
+                        max: 350,
+                        autoMajor: false,
+                        unitMajor: 100
+                    }, {// y1 axis 
+                        text: "Bounce Rate", 
+                        compass: "east",
+                        min: 0,
+                        max: 0.5,
+                        autoMajor: false,
+                        unitMajor: 0.2
+                    }] 
+                }, 
+                stacked: true, 
+                hint: { 
+                    content: function () { 
+                        return this.label + '\n ' + this.y + ''; 
+                    } 
+                }, 
+                header: { 
+                    text: "All Traffic"
+                }, 
+                data: { 
+                    x: { bind: "type" }
+                }, 
+                dataSource: AllTraffic,
+                seriesList: [
+                { 
+                    type: "column", 
+                    label: "Returning Visitors", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "RV" } 
+                    } 
+                }, { 
+                    type: "column", 
+                    label: "New Visitors", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "NV" } 
+                    } 
+                }, { 
+                    type: "line", 
+                    label: "Bounce Rate", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "BR" } 
+                    }, 
+                    markers: { 
+                        visible: true, 
+                        type: "diamond"
+                    },
+                    markerStyle: {
+                        fill: "#ecec29",
+                        width: 6
+                    },
+                    yAxis: 1
+                }],
+                seriesStyles: [
+                {
+                    opacity: 0.8, fill: "#00FFFF", stroke: "#000000", "stroke-width": "1.5"
+                }, {
+                    opacity: 0.8, fill: "#ee6738", stroke: "#000000", "stroke-width": "1.5"
+                }, {
+                    opacity: 0.8, fill: "#ecec29", stroke: "#12b6b6", "stroke-width": "1.5"
+                }],
+                click: function (e, data) {
+                    if (data.type == 'column') {
+                        var link = translateToLink(data.x);
+                        window.location = link;
+                    }
+                }
+            });
+
+
+            $("#YearlyTrafficCompositeChart").wijcompositechart({ 
+                axis: { 
+                    y: [{// main y axis 
+                        text: "No. of Visitors", 
+                        compass: "west", 
+                        min: 0,
+                        max: 350,
+                        autoMajor: false,
+                        unitMajor: 100
+                    }, {// y1 axis 
+                        text: "Bounce Rate", 
+                        compass: "east",
+                        min: 0,
+                        max: 0.8,
+                        autoMajor: false,
+                        unitMajor: 0.4
+                    }] 
+                }, 
+                stacked: true, 
+                hint: { 
+                    content: function () { 
+                        return this.label + '\n ' + this.y + ''; 
+                    } 
+                }, 
+                header: { 
+                    text: "Yearly Organic Traffic"
+                }, 
+                data: { 
+                    x: { bind: "type" }
+                }, 
+                dataSource: YearlyOrganicTraffic,
+                seriesList: [
+                { 
+                    type: "column", 
+                    label: "Returning Visitors", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "RV" } 
+                    } 
+                }, { 
+                    type: "column", 
+                    label: "New Visitors", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "NV" } 
+                    } 
+                }, { 
+                    type: "line", 
+                    label: "Bounce Rate", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "BR" } 
+                    }, 
+                    markers: { 
+                        visible: true, 
+                        type: "diamond"
+                    },
+                    markerStyle: {
+                        fill: "#ecec29",
+                        width: 6
+                    },
+                    yAxis: 1
+                }],
+                seriesStyles: [
+                {
+                    opacity: 0.8, fill: "#00FFFF", stroke: "#000000", "stroke-width": "1.5"
+                }, {
+                    opacity: 0.8, fill: "#ee6738", stroke: "#000000", "stroke-width": "1.5"
+                }, {
+                    opacity: 0.8, fill: "#ecec29", stroke: "#12b6b6", "stroke-width": "1.5"
+                }]
+            });
+        });
+    }); 
+</script>
+</head>
+<body>
+    <div id="AllTrafficCompositeChart" style="width: 1000px; height: 400px"></div>
+    <br/>
+    <div id="YearlyTrafficCompositeChart" style="width: 1000px; height: 400px"></div>
+    <br/>
+</body>
+</HTML>
