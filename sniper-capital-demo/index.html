@@ -288,6 +288,14 @@
                 }
             });
 
+            $(".wijchart-legend-icon").mousemove(function (event) {
+                $(this).css("cursor", "pointer");
+            });
+            $(".wijchart-legend-icon").mouseout(function (event) {
+                $(this).css("cursor", "auto");
+            });
+
+
 
             $("#YearlyTrafficCompositeChart").wijcompositechart({ 
                 axis: { 
