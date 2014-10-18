@@ -209,7 +209,13 @@
                         min: 0,
                         max: 0.5,
                         autoMajor: false,
-                        unitMajor: 0.2
+                        unitMajor: 0.2,
+                        gridMajor: {
+                            visible: true,
+                            style: {
+                                "stroke-dasharray": "--"
+                            }
+                        }
                     }] 
                 }, 
                 stacked: true, 
@@ -270,8 +276,25 @@
                         var link = translateToLink(data.x);
                         window.location = link;
                     }
+                },
+                mouseMove: function (e, data) {
+                    var d = data;
+                    if (data.type == 'column') {
+                        $(this).css("cursor", "pointer");    
+                    }
+                },
+                mouseOut: function (e, data) {
+                    $(this).css("cursor", "auto");
                 }
             });
+
+            $(".wijchart-legend").mousemove(function (event) {
+                $(this).css("cursor", "pointer");
+            });
+            $(".wijchart-legend").mouseout(function (event) {
+                $(this).css("cursor", "auto");
+            });
+
 
 
             $("#YearlyTrafficCompositeChart").wijcompositechart({ 
