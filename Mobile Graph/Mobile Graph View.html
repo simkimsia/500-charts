@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<HTML>
+<head>
+<!-- Wijmo/jQuery references (required) -->
+<script src="http://code.jquery.com/jquery-2.1.0.min.js" type="text/javascript"></script> 
+<script src="http://cdn.wijmo.com/5.20142.15/controls/wijmo.min.js" type="text/javascript"></script>
+<link href="http://cdn.wijmo.com/5.20142.15/styles/wijmo.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Wijmo controls (optional, include the controls you need) -->
+<!-- <script src="http://cdn.wijmo.com/5.20142.15/controls/wijmo.grid.min.js" type="text/javascript"></script> -->
+<script src="http://cdn.wijmo.com/5.20142.15/controls/wijmo.chart.min.js" type="text/javascript"></script>
+<script src="http://cdn.wijmo.com/5.20142.15/controls/wijmo.input.min.js" type="text/javascript"></script>
+<!-- <script src="http://cdn.wijmo.com/5.20142.15/controls/wijmo.gauge.min.js" type="text/javascript"></script> -->
+
+<!-- Wijmo custom theme (optional, include the theme you like) -->
+<!-- <link href="http://cdn.wijmo.com/5.20142.15/styles/themes/wijmo.theme.modern.min.css" rel="stylesheet" type="text/css" /> -->
+
+<!-- Wijmo custom culture (optional, include the culture you want) -->
+<!-- <script src="http://cdn.wijmo.com/5.20142.15/controls/cultures/wijmo.culture.ja.min.js " type="text/javascript"></script> -->
+
+<!-- AngularJS and Wijmo directives (optional, use in AngularJS applications) -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js" type="text/javascript"></script>
+<script src="http://cdn.wijmo.com/5.20142.15/interop/angular/wijmo.angular.min.js" type="text/javascript"></script>
+
+<!-- Data Source -->
+<script src="mobilegraphcontroller.js" type="text/javascript"></script>
+<link href="styling.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body ng-app="app" ng-controller="appCtrl">
+    <!-- this is the chart -->
+    <div class="mobileView">
+        <wj-flex-chart 
+            items-source="data" 
+            binding-x="country" 
+            stacking="{{chartProps.stacking}}" 
+            chart-type="{{chartProps.chartType}}" 
+            >
+            <wj-flex-chart-legend position="{{chartProps.legendPosition}}"></wj-flex-chart-legend>
+
+            <wj-flex-chart-series name="Sales" binding="sales"></wj-flex-chart-series>
+            <wj-flex-chart-series name="Expenses" binding="expenses"></wj-flex-chart-series>
+            <wj-flex-chart-series name="Downloads" binding="downloads"></wj-flex-chart-series>
+        </wj-flex-chart>
+    </div>
+    <div class="mobileView border">
+        <h5>Pick time period</h5>
+        <div id="startDate"></div>
+        <br/>to<br/>
+        <div id="endDate"></div>
+        <h5>OR</h5>
+        <wj-menu value="0" header="Financial Year">
+            <wj-menu-item value="0">FY11/12</wj-menu-item>
+            <wj-menu-item value="1">FY12/13</wj-menu-item>
+            <wj-menu-item value="2">FY13/14</wj-menu-item>
+            <wj-menu-item value="3">FY14/15</wj-menu-item>
+        </wj-menu>
+    </div>
+</body>
