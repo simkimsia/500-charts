@@ -276,6 +276,15 @@
                         var link = translateToLink(data.x);
                         window.location = link;
                     }
+                },
+                mouseMove: function (e, data) {
+                    var d = data;
+                    if (data.type == 'column') {
+                        $(this).css("cursor", "pointer");    
+                    }
+                },
+                mouseOut: function (e, data) {
+                    $(this).css("cursor", "auto");
                 }
             });
 
