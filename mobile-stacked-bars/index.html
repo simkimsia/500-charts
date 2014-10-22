@@ -30,17 +30,20 @@
 <body ng-app="app" ng-controller="appCtrl">
     <!-- this is the chart -->
     <div class="mobileView">
-        <wj-flex-chart 
-            items-source="data" 
-            binding-x="country" 
-            stacking="{{chartProps.stacking}}" 
-            chart-type="{{chartProps.chartType}}" 
-            >
-            <wj-flex-chart-legend position="{{chartProps.legendPosition}}"></wj-flex-chart-legend>
-
-            <wj-flex-chart-series name="Sales" binding="sales"></wj-flex-chart-series>
-            <wj-flex-chart-series name="Expenses" binding="expenses"></wj-flex-chart-series>
-            <wj-flex-chart-series name="Downloads" binding="downloads"></wj-flex-chart-series>
+        <wj-flex-chart
+          control="chart"
+          items-source="data"
+          binding-x="country"
+          stacking="{{chartProps.stacking}}"
+          chart-type="{{chartProps.chartType}}"
+          plot-margin="0.1">
+          <wj-flex-chart-axis wj-property="axisX" labels="false" axis-line="false" major-tick-marks="0">
+          </wj-flex-chart-axis-x>
+          <wj-flex-chart-axis wj-property="axisY" major-grid="false"></wj-flex-chart-axis-x>
+          <wj-flex-chart-legend position="{{chartProps.legendPosition}}"></wj-flex-chart-legend>
+          <wj-flex-chart-series name="Sales" binding="sales"></wj-flex-chart-series>
+          <wj-flex-chart-series name="Expenses" binding="expenses"></wj-flex-chart-series>
+          <wj-flex-chart-series name="Downloads" binding="downloads"></wj-flex-chart-series>
         </wj-flex-chart>
     </div>
     <div class="mobileView border">
@@ -56,4 +59,22 @@
             <wj-menu-item value="3">FY14/15</wj-menu-item>
         </wj-menu>
     </div>
+    <script>
+    $(document).ready(function (){
+    $scope.chart = null;
+    $scope.$watch("chart", function() {
+        if($scope.chart) {
+        var chart = $scope.chart;
+            chart.rendered.addHandler( function (sender,event) {
+                // move y-axis labels
+        $(chart.hostElement).find('.wj-axis-y .wj-label').each( function(){
+           this.setAttribute('x', 0);
+        });
+            });
+    }
+    }); 
+
+    });
+    </script>
+    
 </body>
