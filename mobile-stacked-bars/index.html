@@ -65,22 +65,4 @@
             <wj-menu-item value="3">FY14/15</wj-menu-item>
         </wj-menu>
     </div>
-    <script>
-    $(document).ready(function (){
-    $scope.chart = null;
-    $scope.$watch("chart", function() {
-        if($scope.chart) {
-        var chart = $scope.chart;
-            chart.rendered.addHandler( function (sender,event) {
-                // move y-axis labels
-        $(chart.hostElement).find('.wj-axis-y .wj-label').each( function(){
-           this.setAttribute('x', 0);
-        });
-            });
-    }
-    }); 
-
-    });
-    </script>
-    
 </body>
