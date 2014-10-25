@@ -23,7 +23,7 @@ app.controller('appCtrl', function appCtrl($scope) {
     // add chart properties to scope
     $scope.chartProps = {
         chartType: wijmo.chart.ChartType.Bar,
-        stacking: wijmo.chart.Stacking.Stacked,
+        stacking: wijmo.chart.Stacking.Stacked100pc,
         legendPosition: wijmo.chart.Position.None
     };
 
