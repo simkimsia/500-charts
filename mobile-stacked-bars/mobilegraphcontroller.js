@@ -27,24 +27,6 @@ app.controller('appCtrl', function appCtrl($scope) {
         legendPosition: wijmo.chart.Position.None
     };
 
-    // the date/time being edited
-    var StartDate = new Date();
-    var EndDate = new Date();
-
-    // create InputDate control
-    $scope.startDate = new wijmo.input.InputDate('#startDate', {
-        min: new Date(2014, 8, 1),
-        format: 'd/M/yyyy',
-        value: StartDate
-    });
-    $scope.endDate = new wijmo.input.InputDate('#endDate', {
-        min: new Date(2014, 8, 1),
-        format: 'd/M/yyyy',
-        value: EndDate
-    });
-
-    // $scope.inputDate.valueChanged.addHandler(valueChanged);
-
     $scope.chart = null;
     $scope.$watch("chart", function() {
         if ($scope.chart) {
@@ -56,6 +38,6 @@ app.controller('appCtrl', function appCtrl($scope) {
                 });
             });
         }
-    }); 
+    });
 
 });
