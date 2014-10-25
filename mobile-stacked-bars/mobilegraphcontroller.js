@@ -23,7 +23,7 @@ app.controller('appCtrl', function appCtrl($scope) {
     // add chart properties to scope
     $scope.chartProps = {
         chartType: wijmo.chart.ChartType.Bar,
-        stacking: wijmo.chart.Stacking.Stacked,
+        stacking: wijmo.chart.Stacking.Stacked100pc,
         legendPosition: wijmo.chart.Position.None
     };
 
@@ -44,4 +44,18 @@ app.controller('appCtrl', function appCtrl($scope) {
     });
 
     // $scope.inputDate.valueChanged.addHandler(valueChanged);
+
+    $scope.chart = null;
+    $scope.$watch("chart", function() {
+        if ($scope.chart) {
+            var chart = $scope.chart;
+            chart.rendered.addHandler( function (sender,event) {
+                // move y-axis labels
+                $(chart.hostElement).find('.wj-axis-y .wj-label').each(function() {
+                    this.setAttribute('x', 0);
+                });
+            });
+        }
+    }); 
+
 });
