@@ -31,6 +31,8 @@ app.controller('appCtrl', function appCtrl($scope) {
     $scope.$watch("chart", function() {
         if ($scope.chart) {
             var chart = $scope.chart;
+            // no gaps between bars
+            chart._barPlotter.width = 1;
             chart.rendered.addHandler( function (sender,event) {
                 // move y-axis labels
                 $(chart.hostElement).find('.wj-axis-y .wj-label').each(function() {
