@@ -12,7 +12,8 @@ app.controller('appCtrl', function appCtrl($scope) {
     $scope.startDate = new wijmo.input.InputDate('#startDate', {
         min: new Date(2014, 8, 1),
         format: 'd/M/yyyy',
-        value: StartDate
+        value: startDate,
+        allowKeyboardNavigation: false
     });
     $scope.endDate = new wijmo.input.InputDate('#endDate', {
         min: new Date(2014, 8, 1),
