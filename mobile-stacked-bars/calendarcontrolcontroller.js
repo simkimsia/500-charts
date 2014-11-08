@@ -20,6 +20,6 @@ app.controller('appCtrl', function appCtrl($scope) {
         value: EndDate
     });
 
-    $(".startDate").wijgrid("option", "allowKeyboardNavigation", false);
+    $("#startDate").wijgrid("option", "allowKeyboardNavigation", false);
 
 });
