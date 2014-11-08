@@ -20,6 +20,4 @@ app.controller('appCtrl', function appCtrl($scope) {
         value: endDate
     });
 
-    $("#startDate").wijinputdate(allowKeyboardNavigation);
-
 });
