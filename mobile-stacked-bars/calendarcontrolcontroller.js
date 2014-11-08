@@ -13,12 +13,14 @@ app.controller('appCtrl', function appCtrl($scope) {
         min: new Date(2014, 8, 1),
         format: 'd/M/yyyy',
         value: startDate,
-        allowKeyboardNavigation: false
+        keyboard: false
     });
     $scope.endDate = new wijmo.input.InputDate('#endDate', {
         min: new Date(2014, 8, 1),
         format: 'd/M/yyyy',
         value: EndDate
     });
+
+    // $("#startDate").wijinputdate(allowKeyboardNavigation);
 
 });
