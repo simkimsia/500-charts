@@ -24,8 +24,28 @@
 </script>
 
 <script id="scriptInit" type="text/javascript">
+    var OrganicTraffic = [
+        {
+            type: "Jan Organic Traffic",
+            RV: 67, 
+            NV: 150, 
+            BR: 0.2
+        },
+        {
+            type: "Feb Organic Traffic",
+            RV: 60, 
+            NV: 190, 
+            BR: 0.3
+        },
+        {
+            type: "Mar Organic Traffic",
+            RV: 70, 
+            NV: 210, 
+            BR: 0.15
+        }
+    ];
 
-    var YearlySocialMedia = [
+    var SocialMedia = [
         {
             type: "Jan Social Media",
             RV: 60, 
@@ -43,64 +63,10 @@
             RV: 69, 
             NV: 203, 
             BR: 0.44
-        },
-        {
-            type: "Apr Social Media",
-            RV: 60, 
-            NV: 160, 
-            BR: 0.2
-        },
-        {
-            type: "May Social Media",
-            RV: 63, 
-            NV: 170, 
-            BR: 0.3
-        },
-        {
-            type: "Jun Social Media",
-            RV: 69, 
-            NV: 203, 
-            BR: 0.44
-        },
-        {
-            type: "Jul Social Media",
-            RV: 60, 
-            NV: 160, 
-            BR: 0.2
-        },
-        {
-            type: "Aug Social Media",
-            RV: 63, 
-            NV: 170, 
-            BR: 0.3
-        },
-        {
-            type: "Sep Social Media",
-            RV: 69, 
-            NV: 203, 
-            BR: 0.44
-        },
-        {
-            type: "Oct Social Media",
-            RV: 60, 
-            NV: 160, 
-            BR: 0.2
-        },
-        {
-            type: "Nov Social Media",
-            RV: 63, 
-            NV: 170, 
-            BR: 0.3
-        },
-        {
-            type: "Dec Social Media",
-            RV: 69, 
-            NV: 203, 
-            BR: 0.44
         }
     ];
 
-    var YearlyDirectTraffic = [
+    var DirectTraffic = [
         {
             type: "Jan Direct Traffic",
             RV: 70, 
@@ -118,64 +84,10 @@
             RV: 138, 
             NV: 190, 
             BR: 0.3
-        },
-        {
-            type: "Apr Direct Traffic",
-            RV: 70, 
-            NV: 160, 
-            BR: 0.2
-        },
-        {
-            type: "May Direct Traffic",
-            RV: 68, 
-            NV: 180, 
-            BR: 0.13
-        },
-        {
-            type: "Jun Direct Traffic",
-            RV: 138, 
-            NV: 190, 
-            BR: 0.3
-        },
-        {
-            type: "Jul Direct Traffic",
-            RV: 70, 
-            NV: 160, 
-            BR: 0.2
-        },
-        {
-            type: "Aug Direct Traffic",
-            RV: 68, 
-            NV: 180, 
-            BR: 0.13
-        },
-        {
-            type: "Sep Direct Traffic",
-            RV: 138, 
-            NV: 190, 
-            BR: 0.3
-        },
-        {
-            type: "Oct Direct Traffic",
-            RV: 70, 
-            NV: 160, 
-            BR: 0.2
-        },
-        {
-            type: "Nov Direct Traffic",
-            RV: 68, 
-            NV: 180, 
-            BR: 0.13
-        },
-        {
-            type: "Dec Direct Traffic",
-            RV: 138, 
-            NV: 190, 
-            BR: 0.3
         }
     ];
 
-    var YearlyReferralTraffic = [
+    var ReferralTraffic = [
         {
             type: "Jan Referral Traffic",
             RV: 50, 
@@ -190,60 +102,6 @@
         },
         {
             type: "Mar Referral Traffic",
-            RV: 59, 
-            NV: 150, 
-            BR: 0.3
-        },
-        {
-            type: "Apr Referral Traffic",
-            RV: 50, 
-            NV: 150, 
-            BR: 0.2
-        },
-        {
-            type: "May Referral Traffic",
-            RV: 48, 
-            NV: 140, 
-            BR: 0.13
-        },
-        {
-            type: "Jun Referral Traffic",
-            RV: 59, 
-            NV: 150, 
-            BR: 0.3
-        },
-        {
-            type: "Jul Referral Traffic",
-            RV: 50, 
-            NV: 150, 
-            BR: 0.2
-        },
-        {
-            type: "Aug Referral Traffic",
-            RV: 48, 
-            NV: 140, 
-            BR: 0.13
-        },
-        {
-            type: "Sep Referral Traffic",
-            RV: 59, 
-            NV: 150, 
-            BR: 0.3
-        },
-        {
-            type: "Oct Referral Traffic",
-            RV: 50, 
-            NV: 150, 
-            BR: 0.2
-        },
-        {
-            type: "Nov Referral Traffic",
-            RV: 48, 
-            NV: 140, 
-            BR: 0.13
-        },
-        {
-            type: "Dec Referral Traffic",
             RV: 59, 
             NV: 150, 
             BR: 0.3
@@ -325,6 +183,8 @@
         }
     ];  
 
+    var AllTraffic = OrganicTraffic.concat(SocialMedia).concat(DirectTraffic).concat(ReferralTraffic);
+
     require(["wijmo.wijcompositechart"], function () { 
         $(document).ready(function () { 
 
@@ -334,6 +194,100 @@
                 return link + '.html';
             }
 
+            $("#AllTrafficCompositeChart").wijcompositechart({ 
+                axis: { 
+                    y: [{// main y axis 
+                        text: "No. of Visitors", 
+                        compass: "west", 
+                        min: 0,
+                        max: 350,
+                        autoMajor: false,
+                        unitMajor: 100
+                    }, {// y1 axis 
+                        text: "Bounce Rate", 
+                        compass: "east",
+                        min: 0,
+                        max: 0.5,
+                        autoMajor: false,
+                        unitMajor: 0.2,
+                        gridMajor: {
+                            visible: true,
+                            style: {
+                                "stroke-dasharray": "--"
+                            }
+                        }
+                    }] 
+                }, 
+                stacked: true, 
+                hint: { 
+                    content: function () { 
+                        return this.label + '\n ' + this.y + ''; 
+                    } 
+                }, 
+                header: { 
+                    text: "All Traffic"
+                }, 
+                data: { 
+                    x: { bind: "type" }
+                }, 
+                dataSource: AllTraffic,
+                seriesList: [
+                { 
+                    type: "column", 
+                    label: "Returning Visitors", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "RV" } 
+                    } 
+                }, { 
+                    type: "column", 
+                    label: "New Visitors", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "NV" } 
+                    } 
+                }, { 
+                    type: "line", 
+                    label: "Bounce Rate", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "BR" } 
+                    }, 
+                    markers: { 
+                        visible: true, 
+                        type: "diamond"
+                    },
+                    markerStyle: {
+                        fill: "#ecec29",
+                        width: 6
+                    },
+                    yAxis: 1
+                }],
+                seriesStyles: [
+                {
+                    opacity: 0.8, fill: "#00FFFF", stroke: "#000000", "stroke-width": "1.5"
+                }, {
+                    opacity: 0.8, fill: "#ee6738", stroke: "#000000", "stroke-width": "1.5"
+                }, {
+                    opacity: 0.8, fill: "#ecec29", stroke: "#12b6b6", "stroke-width": "1.5"
+                }],
+                click: function (e, data) {
+                    if (data.type == 'column') {
+                        var link = translateToLink(data.x);
+                        window.location = link;
+                    }
+                },
+                mouseMove: function (e, data) {
+                    var d = data;
+                    if (data.type == 'column') {
+                        $(this).css("cursor", "pointer");    
+                    }
+                },
+                mouseOut: function (e, data) {
+                    $(this).css("cursor", "auto");
+                }
+            });
+
             $(".wijchart-legend").mousemove(function (event) {
                 $(this).css("cursor", "pointer");
             });
@@ -341,7 +295,9 @@
                 $(this).css("cursor", "auto");
             });
 
-            var wijcompositechartDetails = { 
+
+
+            $("#YearlyTrafficCompositeChart").wijcompositechart({ 
                 axis: { 
                     y: [{// main y axis 
                         text: "No. of Visitors", 
@@ -412,80 +368,14 @@
                 }, {
                     opacity: 0.8, fill: "#ecec29", stroke: "#12b6b6", "stroke-width": "1.5"
                 }]
-            };
-            
-            function getQueryStringParams(sParam) {
-                var sPageURL = window.location.search.substring(1);
-                var sURLVariables = sPageURL.split('&');
-                for (var i = 0; i < sURLVariables.length; i++) 
-                {
-                    var sParameterName = sURLVariables[i].split('=');
-                    if (sParameterName[0] == sParam) 
-                    {
-                        return sParameterName[1];
-                    }
-                }
-                return null;
-            }
-        
-            var type = getQueryStringParams('type');
-            if (type == null) {
-                type = 'organic';
-            }
-
-            displayGraphyByType(type);
-
-            function displayGraphyByType(type) {
-                if (type == 'organic') {
-                    wijcompositechartDetails['dataSource'] = YearlyOrganicTraffic;
-                    wijcompositechartDetails['header'] = { 
-                            text: "Organic Traffic"
-                        };
-                }
-                if (type == 'referral') {
-                    wijcompositechartDetails['dataSource'] = YearlyReferralTraffic;
-                    wijcompositechartDetails['header'] = { 
-                            text: "Referral Traffic"
-                        };
-                }
-
-                if (type == 'social') {
-                    wijcompositechartDetails['dataSource'] = YearlySocialMedia;
-                    wijcompositechartDetails['header'] = { 
-                            text: "Social Traffic"
-                        };
-                }
-
-                if (type == 'direct') {
-                    wijcompositechartDetails['dataSource'] = YearlyDirectTraffic;
-                    wijcompositechartDetails['header'] = { 
-                            text: "Direct Traffic"
-                        };
-                }
-
-                $("#YearlyTrafficCompositeChart").wijcompositechart(wijcompositechartDetails);
-            }
-
-            $( "#traffic_type" ).change(function () {
-                var str = "";
-                $( "select option:selected" ).each(function() {
-                  str = $( this ).val();
-                });
-                window.location = "?type=" + encodeURIComponent(str);
-              });
-
-        });// end document ready
-    }); // end require 
-
+            });
+        });
+    }); 
 </script>
 </head>
 <body>
-    <select id="traffic_type">
-        <option value="organic">Organic</option>
-        <option value="direct">Direct</option>
-        <option value="social">Social</option>
-        <option value="referral">Referral</option>
-    </select>
+    <div id="AllTrafficCompositeChart" style="width: 1000px; height: 400px"></div>
+    <br/>
     <div id="YearlyTrafficCompositeChart" style="width: 1000px; height: 400px"></div>
     <br/>
 </body>
