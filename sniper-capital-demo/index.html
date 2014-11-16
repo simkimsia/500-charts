@@ -331,7 +331,26 @@
             function translateToLink(x_value) {
                 var link = x_value.toLowerCase();
                 link = link.replace(/\s/g, '_');
-                return link + '.html';
+                link = translateToIndividual(link);
+                currentUrlWithQueryString = window.location.href;
+                return link + '&back=' + encodeURIComponent(currentUrlWithQueryString);
+            }
+
+            function translateToIndividual(x_value) {
+                var array = x_value.split("_");
+                var queryString = '?month=' + array[0];
+                if (x_value.indexOf('organic') > -1) {
+                    return 'organic_individual_month.html' + queryString;
+                }
+                if (x_value.indexOf('direct') > -1) {
+                    return 'direct_individual_month.html' + queryString;
+                }
+                if (x_value.indexOf('social') > -1) {
+                    return 'social_individual_month.html' + queryString;
+                }
+                if (x_value.indexOf('referral') > -1) {
+                    return 'referral_individual_month.html' + queryString;
+                }
             }
 
             $(".wijchart-legend").mousemove(function (event) {
@@ -411,7 +430,22 @@
                     opacity: 0.8, fill: "#ee6738", stroke: "#000000", "stroke-width": "1.5"
                 }, {
                     opacity: 0.8, fill: "#ecec29", stroke: "#12b6b6", "stroke-width": "1.5"
-                }]
+                }],
+                click: function (e, data) {
+                    if (data.type == 'column') {
+                        var link = translateToLink(data.x);
+                        window.location = link;
+                    }
+                },
+                mouseMove: function (e, data) {
+                    var d = data;
+                    if (data.type == 'column') {
+                        $(this).css("cursor", "pointer");    
+                    }
+                },
+                mouseOut: function (e, data) {
+                    $(this).css("cursor", "auto");
+                }
             };
             
             function getQueryStringParams(sParam) {
@@ -434,6 +468,9 @@
             }
 
             displayGraphyByType(type);
+
+            // default the select to this type
+            $("#traffic_type").val(type);
 
             function displayGraphyByType(type) {
                 if (type == 'organic') {
