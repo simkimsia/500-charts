@@ -27,6 +27,20 @@ app.controller('appCtrl', function appCtrl($scope) {
         legendPosition: wijmo.chart.Position.None
     };
 
+    function getQueryStringParams(sParam) {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) 
+        {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) 
+            {
+                return sParameterName[1];
+            }
+        }
+        return null;
+    }
+
     $scope.chart = null;
     $scope.$watch("chart", function() {
         if ($scope.chart) {
@@ -38,6 +52,11 @@ app.controller('appCtrl', function appCtrl($scope) {
                 $(chart.hostElement).find('.wj-axis-y .wj-label').each(function() {
                     this.setAttribute('x', 0);
                 });
+                var fixedBarHeight = getQueryStringParams('fixed');
+                if (fixedBarHeight) {
+                    // set each bar to be no more than 20px
+                    $(chart.hostElement).height( data.length * 20);
+                }
             });
         }
     });
