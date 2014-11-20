@@ -47,16 +47,18 @@ app.controller('appCtrl', function appCtrl($scope) {
             var chart = $scope.chart;
             // no gaps between bars
             chart._barPlotter.width = 1;
+            
+            var fixedBarHeight = getQueryStringParams('fixed');
+            if (fixedBarHeight) {
+                // set each bar to be no more than 20px
+                $(chart.hostElement).height( data.length * 20);
+            }
+
             chart.rendered.addHandler( function (sender,event) {
                 // move y-axis labels
                 $(chart.hostElement).find('.wj-axis-y .wj-label').each(function() {
                     this.setAttribute('x', 0);
                 });
-                var fixedBarHeight = getQueryStringParams('fixed');
-                if (fixedBarHeight) {
-                    // set each bar to be no more than 20px
-                    $(chart.hostElement).height( data.length * 20);
-                }
             });
         }
     });
