@@ -2,6 +2,17 @@
 <HTML>
 <head>
 <style type="text/css">
+#container { display:block; }
+         @media only screen and (orientation:portrait){
+            #container {  
+                  -webkit-transform: rotate(90deg);
+                  -moz-transform: rotate(90deg);
+                  -o-transform: rotate(90deg);
+                  -ms-transform: rotate(90deg);
+                  transform: rotate(90deg);
+                 }
+
+         }
   @media only screen and (orientation:landscape){
             #container {  
                   -webkit-transform: rotate(0deg);
