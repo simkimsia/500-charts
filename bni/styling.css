@@ -1,0 +1,11 @@
+.mobileView {
+    height: 500px;
+    width: 250px;
+    padding: 5px;
+}
+
+.border {
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightgrey;
+}

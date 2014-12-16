@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<HTML>
+<head>
+<!-- this is to set viewport -->
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+
+<!-- Wijmo/jQuery references (required) -->
+<script src="http://code.jquery.com/jquery-2.1.0.min.js" type="text/javascript"></script> 
+<script src="http://cdn.wijmo.com/5.20142.15/controls/wijmo.min.js" type="text/javascript"></script>
+<link href="http://cdn.wijmo.com/5.20142.15/styles/wijmo.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Wijmo controls (optional, include the controls you need) -->
+<!-- <script src="http://cdn.wijmo.com/5.20142.15/controls/wijmo.grid.min.js" type="text/javascript"></script> -->
+<script src="http://cdn.wijmo.com/5.20142.15/controls/wijmo.chart.min.js" type="text/javascript"></script>
+<script src="http://cdn.wijmo.com/5.20142.15/controls/wijmo.input.min.js" type="text/javascript"></script>
+<!-- <script src="http://cdn.wijmo.com/5.20142.15/controls/wijmo.gauge.min.js" type="text/javascript"></script> -->
+
+<!-- Wijmo custom theme (optional, include the theme you like) -->
+<!-- <link href="http://cdn.wijmo.com/5.20142.15/styles/themes/wijmo.theme.modern.min.css" rel="stylesheet" type="text/css" /> -->
+
+<!-- Wijmo custom culture (optional, include the culture you want) -->
+<!-- <script src="http://cdn.wijmo.com/5.20142.15/controls/cultures/wijmo.culture.ja.min.js " type="text/javascript"></script> -->
+
+<!-- AngularJS and Wijmo directives (optional, use in AngularJS applications) -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js" type="text/javascript"></script>
+<script src="http://cdn.wijmo.com/5.20142.15/interop/angular/wijmo.angular.min.js" type="text/javascript"></script>
+
+<!-- Data Source -->
+<script src="inputcontroller.js" type="text/javascript"></script>
+<link href="styling.css" rel="stylesheet" type="text/css" />
+
+<style>
+svg {
+    height: 100%;
+    width: 100%;
+}
+
+.mobileView {   
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+</style>
+
+</head>
+<body>
+    <div class="mobileView">
+        <h4>Choose your name</h4>
+        <div id="theAutoComplete"></div>
+        <p></p>
+    </div>
+</body>
