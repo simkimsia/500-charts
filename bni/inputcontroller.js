@@ -7,7 +7,22 @@ $(document).ready(function () {
     // list of countries to select from
     function getCountries() {
         return [
+        	'Colin Jarraw',
+        	'Eddie Lok',
+        	'Eric Choo',
+        	'Elaine Low',
+        	'Hendri Zhang',
+        	'Herman Meyer',
+        	'KimSia Sim',
+        	'Koh Kiat Siang',
+        	"Joan Lim",
             'Janssen Ho', 
+            'Mark Lim',
+            'Ng Kah Meng',
+            'Quek Jing Yan',
+            'Regina Cheong',
+            'Samuel Tay',
+            'Toh Seng Hock',
             'Tong Puay Fun'
         ];
     }
