@@ -34,4 +34,14 @@ $(document).ready(function () {
         max: 1000000,
         placeholder: 'amount below $1,000,000'
     });
+
+    $("#bigbutton").on('click', function() {
+    	var dd = $('#theDoneDealCounter input').val();
+    	dd = dd.replace(/\$/g, '');
+    	dd = dd.replace(/\,/g, '');
+    	var visitor = $("#theGuestCounter input").val();
+    	var referral = $("#theReferralCounter input").val();
+    	var person = $("#theAutoComplete input").val();
+    	window.location.href = 'graphs.html?dd=' + dd + '&v=' + visitor + '&r=' + referral + '&name=' + person;
+    });
 });
