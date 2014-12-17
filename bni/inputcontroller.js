@@ -2,7 +2,7 @@ $(document).ready(function () {
     // create AutoComplete
     var ac = new wijmo.input.AutoComplete('#theAutoComplete', {
         itemsSource: getCountries(),
-        placeholder: 'select a country'
+        placeholder: 'Select a member'
     });
     // list of countries to select from
     function getCountries() {
