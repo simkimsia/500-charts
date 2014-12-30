@@ -17,6 +17,8 @@
 <body>
 
 	<div id="ss" style="width:420px;height:400px;"></div>
+	<input type="button" value="Add more Rows" id="add" />
+	<div>Number of rows: <span id="row_count">200</span></div>
 
 	<script type="text/javascript">
 	    $(document).ready(function(){
@@ -66,6 +68,19 @@
     		sheet.setIsProtected(true);
 
     		sheet.setActiveCell(1,0);
+
+    		$("#add").click(function(){
+		        //Add 200 rows after last row
+		        var sheet = $("#ss").wijspread("spread").getActiveSheet();
+		        var rowCount = sheet.getRowCount();
+		        var newRowsStartAt = rowCount;
+		        console.log(rowCount);
+		        if (rowCount > 200) {
+		        	newRowsStartAt = rowCount + 1;
+		        }
+		        sheet.addRows(newRowsStartAt, 200);
+		        $("#row_count").text(sheet.getRowCount());
+		    });
 	    });
 	</script>
 
