@@ -61,7 +61,7 @@
     		cellA1.foreColor("White");
     		cellA1.locked(true);
     		
-    		// set cell B1 as locked and display as ID
+    		// set cell B1 as locked and display as Name
     		var cellB1 = sheet.getCell(0, 1);
     		cellB1.text('Name');
     		cellB1.hAlign($.wijmo.wijspread.HorizontalAlign.center);
@@ -73,8 +73,10 @@
     		// set sheet as protected
     		sheet.setIsProtected(true);
 
+            // set active cell to start at A2
     		sheet.setActiveCell(1,0);
 
+            // allow adding more rows
     		$("#add").click(function(){
 		        //Add 200 rows after last row
 		        var sheet = $("#ss").wijspread("spread").getActiveSheet();
@@ -88,6 +90,7 @@
 		        $("#row_count").text(sheet.getRowCount());
 		    });
 
+            // extract cell data
 		    $("#submit").on('click', function() {
 		    	var sheet = $("#ss").wijspread("spread").getActiveSheet();
 		    	var rowCount = sheet.getRowCount();
