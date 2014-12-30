@@ -20,6 +20,12 @@
 	<input type="button" value="Add more Rows" id="add" />
 	<div>Number of rows: <span id="row_count">200</span></div>
 
+	<br />
+	<input type="button" value="Submit" id="submit" />
+	<div>Sites: </div>
+	<div id="sites" style="border: solid 1px black">
+	</div>
+
 	<script type="text/javascript">
 	    $(document).ready(function(){
 	        $("#ss").wijspread({sheetCount:1}); // create wijspread control
@@ -80,6 +86,22 @@
 		        }
 		        sheet.addRows(newRowsStartAt, 200);
 		        $("#row_count").text(sheet.getRowCount());
+		    });
+
+		    $("#submit").on('click', function() {
+		    	var sheet = $("#ss").wijspread("spread").getActiveSheet();
+		    	var rowCount = sheet.getRowCount();
+		    	var sites = $("#sites");
+		    	for (var rowCounter = 1; rowCounter < rowCount; rowCounter ++) {
+		    		id = sheet.getCell(rowCounter, 0).value();
+		    		sitename = sheet.getCell(rowCounter, 1).value();
+		    		
+		    		if (id != null && sitename != null) {
+		    			currentText = sites.html();
+		    			currentText += "ID: " + id + " Name: " + sitename + "<br />";
+		    			sites.html(currentText);
+		    		}
+		    	}
 		    });
 	    });
 	</script>
