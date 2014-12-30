@@ -16,7 +16,7 @@
 </head>
 <body>
 
-	<div id="ss" style="width:50%;height:400px;"></div>
+	<div id="ss" style="width:300px;height:400px;"></div>
 
 	<script type="text/javascript">
 	    $(document).ready(function(){
@@ -24,13 +24,29 @@
 	        var spread = $("#ss").wijspread("spread"); // get instance of wijspread control
 	        var sheet = spread.getActiveSheet(); // get active worksheet of the wijspread control
 	        // initializing the active worksheet here...
-			//Hide column headers.
-		    sheet.setColumnHeaderVisible(false);
 
-		    //Hide row headers.
-		    sheet.setRowHeaderVisible(false);
-		    //Specify the number of rows/columns to 3.
-    		sheet.setColumnCount(3, $.wijmo.wijspread.SheetArea.viewport);
+		    //Specify the number of rows/columns to 2
+    		sheet.setColumnCount(2, $.wijmo.wijspread.SheetArea.viewport);
+
+    		//Change the width of the second column.
+    		sheet.setColumnWidth(0, 60.0,$.wijmo.wijspread.SheetArea.viewport);
+    		//Change the width of the second column.
+    		sheet.setColumnWidth(1, 180.0,$.wijmo.wijspread.SheetArea.viewport);
+
+    		// set the columns as unlocked
+    		sheet.getColumn(0).locked(false);
+    		sheet.getColumn(1).locked(false);
+
+    		// set cell A1 as locked and display as ID
+    		sheet.getCell(0, 0).text('ID');
+    		sheet.getCell(0, 0).locked(true);
+
+    		// set cell B1 as locked and display as ID
+    		sheet.getCell(0, 1).text('Name');
+    		sheet.getCell(0, 1).locked(true);
+    		
+    		// set sheet as protected
+    		sheet.setIsProtected(true);
 	    });
 	</script>
 
