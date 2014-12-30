@@ -16,7 +16,7 @@
 </head>
 <body>
 
-	<div id="ss" style="width:300px;height:400px;"></div>
+	<div id="ss" style="width:420px;height:400px;"></div>
 
 	<script type="text/javascript">
 	    $(document).ready(function(){
@@ -25,28 +25,47 @@
 	        var sheet = spread.getActiveSheet(); // get active worksheet of the wijspread control
 	        // initializing the active worksheet here...
 
+	        // Specify the number of sheets
+	        spread.setSheetCount(1);
+	        spread.sheets[0].setName("Sites");
+
+	        // no new sheets
+	        spread.newTabVisible(false);
+
 		    //Specify the number of rows/columns to 2
-    		sheet.setColumnCount(2, $.wijmo.wijspread.SheetArea.viewport);
+    		sheet.setColumnCount(2);
 
     		//Change the width of the second column.
-    		sheet.setColumnWidth(0, 60.0,$.wijmo.wijspread.SheetArea.viewport);
+    		sheet.setColumnWidth(0, 60.0);
     		//Change the width of the second column.
-    		sheet.setColumnWidth(1, 180.0,$.wijmo.wijspread.SheetArea.viewport);
+    		sheet.setColumnWidth(1, 300.0);
 
     		// set the columns as unlocked
     		sheet.getColumn(0).locked(false);
     		sheet.getColumn(1).locked(false);
 
     		// set cell A1 as locked and display as ID
-    		sheet.getCell(0, 0).text('ID');
-    		sheet.getCell(0, 0).locked(true);
-
+    		var cellA1 = sheet.getCell(0, 0);
+    		cellA1.text('ID');
+    		cellA1.hAlign($.wijmo.wijspread.HorizontalAlign.center);
+    		cellA1.font("bold 12pt Arial");
+    		cellA1.backColor("#2f2761");
+    		cellA1.foreColor("White");
+    		cellA1.locked(true);
+    		
     		// set cell B1 as locked and display as ID
-    		sheet.getCell(0, 1).text('Name');
-    		sheet.getCell(0, 1).locked(true);
+    		var cellB1 = sheet.getCell(0, 1);
+    		cellB1.text('Name');
+    		cellB1.hAlign($.wijmo.wijspread.HorizontalAlign.center);
+    		cellB1.font("bold 12pt Arial");
+    		cellB1.backColor("#2f2761");
+    		cellB1.foreColor("White");
+    		cellB1.locked(true);
     		
     		// set sheet as protected
     		sheet.setIsProtected(true);
+
+    		sheet.setActiveCell(1,0);
 	    });
 	</script>
 
