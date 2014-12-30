@@ -1,0 +1,265 @@
+<!DOCTYPE HTML>
+<HTML>
+<head>
+<style type="text/css">
+#container { display:block; }
+         @media only screen and (orientation:portrait){
+            #container {  
+                  -webkit-transform: rotate(90deg);
+                  -moz-transform: rotate(90deg);
+                  -o-transform: rotate(90deg);
+                  -ms-transform: rotate(90deg);
+                  transform: rotate(90deg);
+                  position: relative;
+                  top: 300px;
+                  left: -200px;
+            }
+
+         }
+  @media only screen and (orientation:landscape){
+            #container {  
+                  -webkit-transform: rotate(0deg);
+                  -moz-transform: rotate(0deg);
+                  -o-transform: rotate(0deg);
+                  -ms-transform: rotate(0deg);
+                  transform: rotate(0deg);
+                 }
+         }
+</style>
+
+<!--Theme-->
+<link href="http://cdn.wijmo.com/themes/aristo/jquery-wijmo.css" rel="stylesheet" type="text/css" />
+
+<!--Wijmo Widgets CSS-->
+<link href="http://cdn.wijmo.com/jquery.wijmo-pro.all.3.20142.45.min.css" rel="stylesheet" type="text/css" />
+
+<!--RequireJs-->
+<script type="text/javascript" src="http://cdn.wijmo.com/external/require.js"></script>
+
+<script type="text/javascript">
+    requirejs.config({
+        baseUrl: "http://cdn.wijmo.com/amd-js/3.20142.45",
+            paths: {
+                "jquery": "jquery-1.11.1.min",
+                "jquery-ui": "jquery-ui-1.11.0.custom.min",
+                "jquery.ui": "jquery-ui",
+                "jquery.mousewheel": "jquery.mousewheel.min",
+                "globalize": "globalize.min"
+            }
+    });
+</script>
+
+<script id="scriptInit" type="text/javascript">
+
+    function randomInteger(min, max) {
+      return Math.floor((Math.random() * max) + min);
+    }
+
+    function randomDD() {
+      var thousands = randomInteger(0,5) * 1000;
+      var hundreds = randomInteger(0,9) * 100;
+      return thousands + hundreds;
+    }
+
+    function getQueryStringParams(sParam) {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) 
+        {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) 
+            {
+                return sParameterName[1];
+            }
+        }
+        return null;
+    }
+
+    var dd = getQueryStringParams('dd');
+    var referral = parseInt(getQueryStringParams('r'));
+    var visitor = parseInt(getQueryStringParams('v'));
+    
+
+    var sessions = [
+        {
+            type: "Oct 1st",
+            V: randomInteger(0,3), 
+            R: randomInteger(0,5), 
+            DD: randomDD()
+        },
+        {
+            type: "Oct 8th",
+            V: randomInteger(0,3), 
+            R: randomInteger(0,5), 
+            DD: randomDD()
+        },
+        {
+            type: "Oct 15th",
+            V: randomInteger(0,3), 
+            R: randomInteger(0,5), 
+            DD: 0.00
+        },
+        {
+            type: "Oct 22nd",
+            V: randomInteger(0,3), 
+            R: randomInteger(0,5), 
+            DD: 0.00
+        },
+        {
+            type: "Oct 29th",
+            V: randomInteger(0,3), 
+            R: randomInteger(0,5), 
+            DD: 0.00
+        },
+        {
+            type: "Nov 5th",
+            V: randomInteger(0,3), 
+            R: randomInteger(0,5), 
+            DD: randomDD()
+        },
+        {
+            type: "Nov 12th",
+            V: randomInteger(0,3), 
+            R: randomInteger(0,5), 
+            DD: 0.00
+        },
+        {
+            type: "Nov 19th",
+            V: randomInteger(0,3), 
+            R: randomInteger(0,5), 
+            DD: 0.00
+        },
+        {
+            type: "Nov 26th",
+            V: randomInteger(0,3), 
+            R: randomInteger(0,5), 
+            DD: 0.00
+        },
+        {
+            type: "Dec 3rd",
+            V: randomInteger(0,3), 
+            R: randomInteger(0,5), 
+            DD: randomDD()
+        },
+        {
+            type: "Dec 10th",
+            V: randomInteger(0,3), 
+            R: randomInteger(0,5), 
+            DD: 0.00
+        },
+        {
+            type: "Dec 17th",
+            V: visitor, 
+            R: referral, 
+            DD: dd
+        }
+    ]; 
+
+    require(["wijmo.wijcompositechart"], function () { 
+        $(document).ready(function () { 
+
+            var person = getQueryStringParams('name');
+
+            $(".wijchart-legend").mousemove(function (event) {
+                $(this).css("cursor", "pointer");
+            });
+            $(".wijchart-legend").mouseout(function (event) {
+                $(this).css("cursor", "auto");
+            });
+
+            var wijcompositechartDetails = { 
+                axis: { 
+                    y: [{// main y axis 
+                        text: "Visitors & Referrals", 
+                        compass: "west", 
+                        min: 0,
+                        max: 10,
+                        autoMajor: false,
+                        unitMajor: 5
+                    }, {// y1 axis 
+                        text: "Done Deals", 
+                        compass: "east",
+                        min: 0,
+                        max: 7000,
+                        autoMajor: false,
+                        unitMajor: 2000
+                    }] 
+                }, 
+                stacked: true, 
+                hint: { 
+                    content: function () { 
+                        return this.label + '\n ' + this.y + ''; 
+                    } 
+                }, 
+                header: { 
+                    text: "Traffic Lights"
+                }, 
+                data: { 
+                    x: { bind: "type" }
+                }, 
+                dataSource: sessions,
+                seriesList: [
+                { 
+                    type: "column", 
+                    label: "Visitors", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "V" } 
+                    } 
+                }, { 
+                    type: "column", 
+                    label: "Referrals", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "R" } 
+                    } 
+                }, { 
+                    type: "line", 
+                    label: "Done Deals", 
+                    legendEntry: true, 
+                    data: { 
+                        y: { bind: "DD" } 
+                    }, 
+                    markers: { 
+                        visible: true, 
+                        type: "diamond"
+                    },
+                    markerStyle: {
+                        fill: "#ecec29",
+                        width: 6
+                    },
+                    yAxis: 1
+                }],
+                seriesStyles: [
+                {
+                    opacity: 0.8, fill: "#00FFFF", stroke: "#000000", "stroke-width": "1.5"
+                }, {
+                    opacity: 0.8, fill: "#ee6738", stroke: "#000000", "stroke-width": "1.5"
+                }, {
+                    opacity: 0.8, fill: "#ecec29", stroke: "#12b6b6", "stroke-width": "1.5"
+                }]
+            };
+            
+            
+      
+            wijcompositechartDetails['dataSource'] = sessions;
+            wijcompositechartDetails['header'] = { 
+              text: decodeURI(person) + " Traffic Lights"
+            };
+
+            $("#YearlyTrafficCompositeChart").wijcompositechart(wijcompositechartDetails);
+
+        });// end document ready
+    }); // end require 
+
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="YearlyTrafficCompositeChart"></div>
+    <br/>
+    <a href="index.html">Back</a>
+  </div>
+    
+</body>
+</HTML>
