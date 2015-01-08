@@ -22,12 +22,18 @@ app.controller('appCtrl', ['$scope', 'Api', function ($scope, Api) {
     //     });
     // }
     request.$promise.then(function(response) {
-        $scope.data = response.data;
+        var data = [];
+        for (var i = 0; i < response.data.length; i++) {
+            data.push({
+                timestamp: Globalize.parseDate(response.data[i].timestamp, 'yyyy-MM-dd HH:mm:ss.ffffff'),
+                os: response.data[i].os,
+                sg: response.data[i].sg
+            });
+        }
+        $scope.data = data;
         console.log($scope.data);
+
     });
-    
-    // add data array to scope
-    $scope.data = request.data;
 
     // add chart properties to scope
     $scope.chartProps = {
