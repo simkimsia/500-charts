@@ -14,8 +14,8 @@ app.controller('appCtrl', ['$scope', 'Api', function ($scope, Api) {
         for (var i = 0; i < response.data.length; i++) {
             data.push({
                 timestamp: wijmo.Globalize.parseDate(response.data[i].timestamp, 'yyyy-MM-dd HH:mm:ss.ffffff'),
-                os: response.data[i].os,
-                sg: response.data[i].sg
+                sg: response.data[i].sg,
+                os: response.data[i].os
             });
         }
         $scope.data = data;
