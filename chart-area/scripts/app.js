@@ -25,6 +25,8 @@ app.controller('appCtrl', ['$scope', 'Api', function ($scope, Api) {
     // add data array to scope
     $scope.data = request.data;
 
+    console.log($scope.data);
+
     // add chart properties to scope
     $scope.chartProps = {
         chartType: wijmo.chart.ChartType.Area,
