@@ -1,4 +1,6 @@
-var services = angular.module('MarketShare.services', ['ngResource', 'ngCookies']);
+var services = angular.module('MarketShare.services', [
+    'ngResource', 'ngCookies'
+]);
 
 services.factory('Api', ['$resource',
   function($resource) {

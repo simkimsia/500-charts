@@ -1,6 +1,7 @@
 // declare app module
 var app = angular.module('app', [
     'wj', 
+    'ngRoute',
     'MarketShare.services'
 ]);
 
