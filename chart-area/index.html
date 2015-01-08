@@ -12,9 +12,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-cookies.js"></script>
 
   <script src="scripts/wijmo.js" type="text/javascript"></script>
+  
   <script src="scripts/wijmo.chart.js" type="text/javascript"></script>
   <script src="scripts/wijmo.angular.js" type="text/javascript"></script>
   <script src="scripts/app.js" type="text/javascript"></script>
+  <script src="scripts/services.js" type="text/javascript"></script>
 </head>
 <body ng-app="app" ng-controller="appCtrl">
 
@@ -24,12 +26,10 @@
   chart-type="{{chartProps.chartType}}"
   stacking="{{chartProps.stacking}}"
   rotated="{{chartProps.rotated}}"
-  binding-x="country">
-    <wj-flex-chart-series name="Sales" binding="sales">
+  binding-x="timestamp">
+    <wj-flex-chart-series name="OSE" binding="os">
     </wj-flex-chart-series>
-    <wj-flex-chart-series name="Expenses" binding="expenses">
-    </wj-flex-chart-series>
-    <wj-flex-chart-series name="Downloads" binding="downloads">
+    <wj-flex-chart-series name="SGX" binding="sg">
     </wj-flex-chart-series>
   </wj-flex-chart>
 
