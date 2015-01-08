@@ -21,11 +21,13 @@ app.controller('appCtrl', ['$scope', 'Api', function ($scope, Api) {
     //         expenses: Math.random() * 5000
     //     });
     // }
-
+    request.$promise.then(function(response) {
+        $scope.data = response.data;
+        console.log($scope.data);
+    });
+    
     // add data array to scope
     $scope.data = request.data;
-
-    console.log($scope.data);
 
     // add chart properties to scope
     $scope.chartProps = {
