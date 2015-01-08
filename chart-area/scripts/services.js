@@ -5,7 +5,7 @@ services.factory('Api', ['$resource',
     var resource = $resource('', {}, {
       getData: {
         method: 'GET',
-        url: '/chart-area/data.json'
+        url: 'http://simkimsia.github.io/500-charts/chart-area/data.json'
         //url: 'http://tamtech.ddns.net/mktshare/json/?minutes=60&display=#'
       }
     });
