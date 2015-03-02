@@ -1,0 +1,3 @@
+[submodule "dygraphs/js/dygraphs"]
+	path = dygraphs/js/dygraphs
+	url = https://github.com/danvk/dygraphs.git
