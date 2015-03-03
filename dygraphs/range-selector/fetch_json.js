@@ -1,12 +1,14 @@
 function getJSON() {
 	var json;
-	return JSON.parse($.ajax({
+	$.ajax({
 		type: "GET",
 		url: "http://simkimsia.github.io/500-charts/dygraphs/range-selector/data.json",
 		dataType: "json",
 		success: function( data ) {
-			return data;
+			json = data;
 		}
-	}).responseText);
+	});
+
+	if (json) return json;
 
 }
