@@ -40,6 +40,12 @@
                           document.getElementById("noroll"),
                           data,
                           {
+                            xValueFormatter: Dygraph.dateString_,
+                            xValueParser: function(x) { 
+                                x = x.substring(0,16);
+                                return Date.parse(x);
+                            },
+                            xTicker: Dygraph.dateTicker,
                             customBars: true,
                             title: 'Daily Temperatures in New York vs. San Francisco',
                             ylabel: 'Temperature (F)',
