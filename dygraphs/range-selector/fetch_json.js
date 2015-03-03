@@ -6,8 +6,11 @@ function getJSON() {
 		dataType: "json",
 		success: function( data ) {
 			json = data;
+			console.log(json);
 		}
 	});
+
+	console.log(json);
 
 	if (json) return json['data'];
 
