@@ -6,6 +6,7 @@
     <script src="../js/dygraphs/dygraph-dev.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="fetch_json.js"></script>
     <script src="../js/dygraphs/gallery/data.js"></script>
 
   </head>
@@ -21,7 +22,7 @@
              $(document).ready(function () {
                   new Dygraph(
                       document.getElementById("noroll"),
-                      data_temp,
+                      data_json,
                       {
                         customBars: true,
                         title: 'Daily Temperatures in New York vs. San Francisco',
