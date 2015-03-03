@@ -34,9 +34,9 @@
 
         <script type="text/javascript">
              $(document).ready(function () {
-                var data_json = getJSON();
-                console.log(data_json);
-
+                $.when(getJSON()).then(function (data) {
+                  console.log(data);
+                });
                   new Dygraph(
                       document.getElementById("noroll"),
                       data_json,
