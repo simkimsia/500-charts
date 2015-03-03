@@ -9,6 +9,6 @@ function getJSON() {
 		}
 	});
 
-	if (json) return json;
+	if (json) return json['data'];
 
 }
