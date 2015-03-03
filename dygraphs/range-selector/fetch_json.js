@@ -5,3 +5,21 @@ function getJSON() {
 		dataType: "json"
 	});
 }
+
+function transformDataArray(data_points) {
+	var length = data_points.length;
+	var result = [];
+	for (var i = 0; i < length; i++) {
+		result[i] = transformDataPoint(data_points[i]);
+	};
+	return result;
+}
+
+function transformDataPoint(data_point) {
+	var result = [];
+	result[0] = data_point.timestamp;
+	result[1] = data_point.sg;
+	result[2] = data_point.os;
+
+	return result;
+}

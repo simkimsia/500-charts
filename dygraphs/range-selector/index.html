@@ -35,10 +35,10 @@
         <script type="text/javascript">
              $(document).ready(function () {
                 $.when(getJSON()).then(function (json_response) {
-                      console.log(json_response.data);
+                      var data = transformDataArray(json_response.data);
                       new Dygraph(
                           document.getElementById("noroll"),
-                          json_response.data,
+                          data,
                           {
                             customBars: true,
                             title: 'Daily Temperatures in New York vs. San Francisco',
