@@ -20,7 +20,7 @@ function transformDataPoint(data_point) {
 	timestamp = data_point.timestamp;
 
 	timestamp = timestamp.substring(0,16);
-	result[0] = Date.parse(timestamp);
+	result[0] = new Date(timestamp);
 	result[1] = data_point.sg;
 	result[2] = data_point.os;
 
