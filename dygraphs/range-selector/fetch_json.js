@@ -19,8 +19,15 @@ function transformDataPoint(data_point) {
 	var result = [];
 	timestamp = data_point.timestamp;
 
-	timestamp = timestamp.substring(0,16);
-	result[0] = new Date(timestamp);
+	year = timestamp.substring(0,4);
+	month = timestamp.substring(5,2);
+	day = timestamp.substring(8,2);
+
+	hour = timestamp.substring(11,2);
+	minute = timestamp.substring(14,2);
+
+	result[0] = new Date(year, month, day, hour, minute);
+	console.log(result[0]);
 	result[1] = data_point.sg;
 	result[2] = data_point.os;
 
