@@ -20,11 +20,11 @@ function transformDataPoint(data_point) {
 	timestamp = data_point.timestamp;
 
 	year = timestamp.substring(0,4);
-	month = timestamp.substring(5,2);
-	day = timestamp.substring(8,2);
+	month = timestamp.substring(5,7);
+	day = timestamp.substring(8,10);
 
-	hour = timestamp.substring(11,2);
-	minute = timestamp.substring(14,2);
+	hour = timestamp.substring(11,13);
+	minute = timestamp.substring(14,16);
 
 	console.log(year);
 	console.log(month);
