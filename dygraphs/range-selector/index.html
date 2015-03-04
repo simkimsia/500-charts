@@ -31,7 +31,7 @@
         <div id="roll14" style="width:600px; height:300px;"></div> -->
 
         <script type="text/javascript">
-             $(document).ready(function () {
+             $(window).load(function () {
                 $.when(getJSON()).then(function (json_response) {
                       var data = transformDataArray(json_response.data);
                       new Dygraph(
