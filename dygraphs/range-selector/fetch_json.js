@@ -26,13 +26,7 @@ function transformDataPoint(data_point) {
 	hour = timestamp.substring(11,13);
 	minute = timestamp.substring(14,16);
 
-	console.log(year);
-	console.log(month);
-	console.log(day);
-	console.log(hour);
-	console.log(minute);
 	result[0] = new Date(year, month, day, hour, minute, 0);
-	console.log(result[0]);
 	result[1] = data_point.sg;
 	result[2] = data_point.os;
 
