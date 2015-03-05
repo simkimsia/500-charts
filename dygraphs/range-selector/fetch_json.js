@@ -27,8 +27,8 @@ function transformDataPoint(data_point) {
 	minute = timestamp.substring(14,16);
 
 	result[0] = new Date(year, month, day, hour, minute, 0);
-	result[1] = data_point.sg;
-	result[2] = data_point.os;
+	result[1] = data_point.SG;
+	result[2] = data_point.OS;
 
 	return result;
 }
