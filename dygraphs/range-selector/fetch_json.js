@@ -1,7 +1,7 @@
 function getJSON() {
 	return $.ajax({
 		type: "GET",
-		url: "http://simkimsia.github.io/500-charts/dygraphs/range-selector/data.json",
+		url: "http://mktshare.oppoin.com/500-charts/dygraphs/range-selector/json.php",
 		dataType: "json"
 	});
 }
