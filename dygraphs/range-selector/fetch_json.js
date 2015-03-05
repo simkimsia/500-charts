@@ -1,7 +1,7 @@
 function getJSON() {
 	return $.ajax({
 		type: "GET",
-		url: "http://simkimsia.github.io/500-charts/dygraphs/range-selector/data.json",
+		url: "http://mktshare.oppoin.com/500-charts/dygraphs/range-selector/json.php",
 		dataType: "json"
 	});
 }
@@ -19,8 +19,14 @@ function transformDataPoint(data_point) {
 	var result = [];
 	timestamp = data_point.timestamp;
 
-	timestamp = timestamp.substring(0,16);
-	result[0] = new Date(timestamp);
+	year = timestamp.substring(0,4);
+	month = timestamp.substring(5,7);
+	day = timestamp.substring(8,10);
+
+	hour = timestamp.substring(11,13);
+	minute = timestamp.substring(14,16);
+
+	result[0] = new Date(year, month, day, hour, minute, 0);
 	result[1] = data_point.sg;
 	result[2] = data_point.os;
 
