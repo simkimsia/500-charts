@@ -1,5 +1,6 @@
 <?php
 
+header('Content-Type: application/json');
 // create a new cURL resource
 $ch = curl_init();
 
@@ -12,5 +13,5 @@ $result = curl_exec($ch);
 
 // close cURL resource, and free up system resources
 curl_close($ch);
-return $result;
+echo $result;
 ?>
