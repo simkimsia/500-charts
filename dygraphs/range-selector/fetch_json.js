@@ -29,6 +29,7 @@ function transformDataPoint(data_point) {
 	result[0] = new Date(year, month, day, hour, minute, 0);
 	result[1] = data_point.SG;
 	result[2] = data_point.OS;
+	result[3] = data_point.CM;
 
 	return result;
 }
